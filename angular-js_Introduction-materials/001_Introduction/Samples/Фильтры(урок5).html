@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html ng-app="courseListApp">
+<head>
+    <title>Планировщик курсов</title>
+    <script src="Libraries/angular.js"></script>
+    <link href="Libraries/bootstrap.css" rel="stylesheet" />
+    <link href="Libraries/bootstrap-theme.css" rel="stylesheet" />
+
+    <script>
+        // Модуль
+
+        var courseListApp = angular.module("courseListApp", []);
+
+        // Контроллер
+
+        courseListApp.controller("CourseListCtrl", function ($scope) {
+            $scope.items = [{ name: "Item 1",price: 10.2,category: "1",count: 10,tax: 1.22, expiration: 10 },
+                { name: "Item 2",price: 15.2,category: "1",count: 10,tax: 1.22, expiration: 70 },
+                { name: "Item 3",price: 11.2,category: "1",count: 10,tax: 0.55, expiration: 10 },
+                { name: "Item 4",price: 9,category: "2",count: 10,tax: 1.2, expiration: 5 },
+                { name: "Item 5",price: 7.5,category: "2",count: 10,tax: 0.22, expiration: 33 }];
+        });
+
+    </script>
+
+</head>
+
+<body ng-controller="CourseListCtrl">
+<div class="container">
+    <div class="panel">
+
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Count</th>
+                <th>Tax</th>
+                <th>Expiration</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--ng-repeat - директива указывает, что блок разметки должен быть повторен для каждого элемента в источнике данных.
+                Выражение передаваемое в директиву (атрибут) - "<элемент> in <коллекция>"-->
+            <tr ng-repeat="item in items">
+                <th>{{item.name}}</th>
+                <!--для применения филтра используем символ | -->
+                <!--expression | filter : parameters-->
+                <th>{{item.price | currency}}</th> <!--так будет выводить валюту страны по настройкам компа-->
+                <!--<th>{{item.price | currency : "UAH" }}</th>-->
+                <th>{{item.category}}</th>
+                <th>{{item.count}}</th>
+                <th>{{item.tax}}</th>
+                <th>{{item.expiration}}</th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+
