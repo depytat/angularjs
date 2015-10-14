@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  ng-app="Task1App">
+<head>
+    <title>Task 1</title>
+    <script src="Libraries/angular.js"></script>
+
+    <link href="Libraries/bootstrap.css" rel="stylesheet" />
+    <link href="Libraries/bootstrap-theme.css" rel="stylesheet" />
+
+    <script>
+
+        var Task1App = angular.module("Task1App", []);
+
+        // Контроллер
+
+        Task1App.controller("Task1Ctrl", function ($scope) {
+            $scope.hideElem1 = false;
+            $scope.hideElem2 = false;
+            $scope.hideElem3 = false;
+
+        });
+
+    </script>
+
+    <style>
+        div {
+            display: inline-block;
+            border: 1px solid grey;
+            border-radius: 4px;
+            margin: 14px;
+            padding: 30px;
+        }
+
+        #d1 {
+            background: yellow;
+        }
+        #d2 {
+            background: cornflowerblue;
+        }
+        #d3 {
+            background: greenyellow;
+        }
+
+        #d4 {
+            background: floralwhite;
+        }
+    </style>
+</head>
+<body ng-controller="Task1Ctrl">
+    <div>
+        <input type="checkbox" ng-model="hideElem1" /> Hide Element 1 <br/>
+        <input type="checkbox" ng-model="hideElem2" /> Hide Element 2 <br/>
+        <input type="checkbox" ng-model="hideElem3" /> Hide Element 3
+    </div>
+
+    <div id="d1" ng-hide="hideElem1" ></div>
+    <div id="d2" ng-hide="hideElem2" ></div>
+    <div id="d3" ng-hide="hideElem3" ></div>
+
+<div id="d4" ng-if="hideElem1"></div>
+
+</body>
+</html>

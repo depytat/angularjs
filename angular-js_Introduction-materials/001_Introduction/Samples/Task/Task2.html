@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="Task2App">
+<head>
+    <title>ToDo List (Task2)</title>
+    <script src="../Libraries/angular.js"></script>
+    <link href="../Libraries/bootstrap.css" rel="stylesheet" />
+    <link href="../Libraries/bootstrap-theme.css" rel="stylesheet" />
+    <script src="todo.js"></script>
+    <script>
+
+        // Модуль
+
+        var Task2App = angular.module("Task2App", []);
+
+        // Контроллер
+
+        Task2App.controller("Task2Ctrl", function ($scope) {
+            $scope.data = todoModel;
+        });
+
+    </script>
+
+</head>
+<body ng-controller="Task2Ctrl">
+
+    <div class="container">
+
+        <h3>ToDo List</h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Completed</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="dela in data.data">
+                <td>{{dela.name}}</td>
+                <td>{{dela.duedate}}</td>
+                <td>{{dela.description}}</td>
+                <td>{{dela.completed}}</td>
+            </tr>
+
+        </table>
+
+        <div>
+            <div class="input-group">
+                <!-- ng-model позволяет привязать данные введенные в поле ввода к свойству $scope.courseName -->
+                <p>Name</p>
+                <input class="form-control" ng-model="name" placeholder="Name" />
+
+                <p>Due Date</p>
+                <input class="form-control" ng-model="duedate" placeholder="Date"/>
+
+                <p>Description</p>
+                <input class="form-control" ng-model="description" placeholder="Description"/>
+
+                <label>
+                    Completed
+                    <input type="checkbox" ng-model="completed" />
+                </label>
+                <br/>
+                <br/>
+                <div>
+                    <button class="btn btn-default" ng-click="data.addItem(name,duedate,description, completed)">Добавить</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
