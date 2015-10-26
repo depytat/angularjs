@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html ng-app="exampleModel">
+<head>
+    <title>Директивы</title>
+    <script src="Libraries/angular.js"></script>
+    <script src="Libraries/jqlite.1.1.1.min.js"></script>
+    <link href="Libraries/bootstrap.css" rel="stylesheet" />
+    <link href="Libraries/bootstrap-theme.css" rel="stylesheet" />
+
+    <script>
+        angular.module("exampleModel", [])
+        //создание пользовательской диретивы происходит при помощи метода directive
+        //1 аргумент - имя директивы
+        //2 аргумент - фабричная функция для создания директивы
+
+
+        .directive("orderedList", function() {
+            return function (scope, element, attributes) {
+                var attrValue = attributes["orderedList"];
+                var data = scope[attrValue];
+
+                if (angular.isArray(data)) {
+                    //angular.element метод приобразования строки или DOM элемента в jquery объект
+                    var e = angular.element("<ol>");
+                    element.append(e); //добавляем ol к элементу для которого установленна директива
+                    for (var i = 0; i < data.length; i ++) {
+                        // сщздаем li элементы заполняя их данными из массива
+                        e.append(angular.element("<li>").text(data[i].name));
+                    }
+                }
+            }
+        })
+        .controller("defaultCtrl", function ($scope) {
+            $scope.items = [
+                { name: "Item 1",price: 10.2 },
+                { name: "Item 2",price: 15.2 },
+                { name: "Item 3",price: 11.2},
+                { name: "Item 4",price: 9},
+                { name: "Item 5",price: 7.5}
+            ];
+        });
+
+    </script>
+
+</head>
+
+<body ng-controller="defaultCtrl">
+
+  <div class="panel panel-primary">
+      <div class="panel-heading">
+          <h2>Items</h2>
+          <div class="panel-body h3">
+              <div ordered-list="items"></div>
+          </div>
+      </div>
+  </div>
+</body>
+</html>
+

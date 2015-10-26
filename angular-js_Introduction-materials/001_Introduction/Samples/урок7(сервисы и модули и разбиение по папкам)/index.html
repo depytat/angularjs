@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html ng-app="exampleApp">
+<head>
+    <title>Сервисы и Модули</title>
+    <script src="../Libraries/angular.js"></script>
+    <link href="../Libraries/bootstrap.css" rel="stylesheet" />
+    <link href="../Libraries/bootstrap-theme.css" rel="stylesheet" />
+
+    <script src="app.js"></script>
+    <script src="controller.js"></script>
+    <script src="directive.js"></script>
+
+
+</head>
+
+<body ng-controller="defaultCtrl">
+
+<div class="panel panel-primary">
+    <div class="well">
+        <div class="btn-group" tri-button counter="buttons.totalClicks" source="button.names">
+            <button class="btn btn-default" ng-repeat="name in buttons.name">
+                {{name}}
+            </button>
+        </div>
+        <h5>Total clicks: {{buttons.totalClicks}}</h5>
+    </div>
+</div>
+</body>
+</html>
+
